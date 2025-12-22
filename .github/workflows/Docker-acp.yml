@@ -18,14 +18,8 @@ on:
     branches: [ "main" ]
     # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
-    paths:
-      - 'apim-acp/**'
-      - '.github/workflows/Docker-acp.yml'
   pull_request:
     branches: [ "main" ]
-    paths:
-      - 'apim-acp/**'
-      - '.github/workflows/Docker-acp.yml'
 
 env:
   # Use docker.io for Docker Hub if empty

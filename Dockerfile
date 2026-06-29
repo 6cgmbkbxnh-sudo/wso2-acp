@@ -118,7 +118,7 @@ RUN \
 # remove unnecesary packages
 RUN apt-get purge -y netcat-traditional unzip wget
 #Add Microsoft SQL driver
-ADD --chown=wso2carbon:wso2 https://repo1.maven.org/maven2/com/microsoft/sqlserver/mssql-jdbc/13.2.1.jre11/mssql-jdbc-13.2.1.jre11.jar ${WSO2_SERVER_HOME}/repository/components/lib
+ADD --chown=wso2carbon:wso2 https://repo1.maven.org/maven2/com/microsoft/sqlserver/mssql-jdbc/13.4.0.jre11/mssql-jdbc-13.4.0.jre11.jar ${WSO2_SERVER_HOME}/repository/components/lib
 
 # set the user and work directory
 USER ${USER_ID}

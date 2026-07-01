@@ -19,16 +19,28 @@
 # set base Docker image to Ubuntu
 FROM ubuntu:25.10
 
-ENV LANG='ru_RU.UTF-8' LANGUAGE='ru_RU:ru' LC_ALL='ru_RU.UTF-8'
-# Установлен часовой пояс Москвы
 ENV TZ=Europe/Moscow
+ENV LANG=ru_RU.UTF-8 \
+    LANGUAGE=ru_RU:ru \
+    LC_ALL=ru_RU.UTF-8
 
 # install dependencies
 RUN apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata curl ca-certificates fontconfig locales python-is-python3 libxml2-utils netcat-traditional unzip wget \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        tzdata \
+        curl \
+        ca-certificates \
+        fontconfig \
+        locales \
+        python-is-python3 \
+        libxml2-utils \
+        netcat-traditional \
+        unzip \
+        wget \
     && echo "ru_RU.UTF-8 UTF-8" >> /etc/locale.gen \
     && locale-gen ru_RU.UTF-8 \
-    && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
+    && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
+    && echo $TZ > /etc/timezone \
     && rm -rf /var/lib/apt/lists/*
 
 ENV JAVA_VERSION=jdk-21.0.5+11

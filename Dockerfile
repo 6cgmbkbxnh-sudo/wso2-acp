@@ -20,9 +20,6 @@
 FROM ubuntu:25.10
 
 ENV TZ=Europe/Moscow
-ENV LANG=ru_RU.UTF-8 \
-    LANGUAGE=ru_RU:ru \
-    LC_ALL=ru_RU.UTF-8
 
 # install dependencies
 RUN apt-get update \
@@ -41,8 +38,13 @@ RUN apt-get update \
     && locale-gen ru_RU.UTF-8 \
     && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
     && echo $TZ > /etc/timezone \
+    && dpkg-reconfigure --frontend=noninteractive tzdata \
     && rm -rf /var/lib/apt/lists/*
 
+ENV LANG=ru_RU.UTF-8 \
+    LANGUAGE=ru_RU:ru \
+    LC_ALL=ru_RU.UTF-8
+    
 ENV JAVA_VERSION=jdk-21.0.5+11
 ENV JAVA_HOME=/opt/java/openjdk \
     PATH="/opt/java/openjdk/bin:$PATH"
